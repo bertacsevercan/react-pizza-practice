@@ -2,17 +2,15 @@
   "pizzas": [
     {
       "id": 1,
-      "topping": "Plain",
-      "size": "Small",
-      "vegetarian": true,
-      "Plain": "Plain"
+      "topping": "Plain___",
+      "size": "Medium",
+      "vegetarian": true
     },
     {
       "id": 2,
       "topping": "Pepperoni",
       "size": "Small",
-      "vegetarian": false,
-      "Pepperoni": "Pepperoni"
+      "vegetarian": false
     },
     {
       "id": 3,
@@ -22,9 +20,9 @@
     },
     {
       "id": 4,
-      "topping": "Sausage",
-      "size": "Small",
-      "vegetarian": false
+      "topping": "Sosisli",
+      "size": "Medium",
+      "vegetarian": true
     },
     {
       "id": 5,

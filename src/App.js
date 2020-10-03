@@ -15,13 +15,37 @@ useEffect(() => {
   }
   fetchData()
   
-},[pizzas.topping]);
-const handleEdit = (e, topping, id) =>{
+},[updatedPizza]); // does a lot of fetch, why ?
+/*
+const handleClick = (e, topping, size, vegetarian, id) => {
   async function updateData(){
     const res = await fetch(`http://localhost:3000/pizzas/${id}`, {
       method: "PATCH",
       body: JSON.stringify({
-        "topping" : topping
+        "topping" : topping,
+        "size" : size,
+        "vegetarian" : vegetarian
+
+      }),
+      headers: { 
+        "Content-type": "application/json; charset=UTF-8 "
+      }
+    })
+    const data = await res.json()
+    console.log(data)
+    setupdatedPizza(data)
+  } updateData();
+
+}*/
+
+const handleEdit = (e, topping, size, vegetarian, id) =>{  // warning on console!!!
+  async function updateData(){
+    const res = await fetch(`http://localhost:3000/pizzas/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        "topping" : topping,
+        "size" : size,
+        "vegetarian" : vegetarian
       }),
       headers: { 
         "Content-type": "application/json; charset=UTF-8 "
@@ -36,7 +60,7 @@ const handleEdit = (e, topping, id) =>{
   return (
     <Fragment>
       <Header />
-      <PizzaForm updatedPizza = {updatedPizza} />
+      <PizzaForm handleEdit={handleEdit} setupdatedPizza={setupdatedPizza} updatedPizza = {updatedPizza} />
       <PizzaList handleEdit={handleEdit} pizzas={pizzas} />
     </Fragment>
   );

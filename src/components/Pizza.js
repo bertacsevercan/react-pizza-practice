@@ -8,7 +8,7 @@ const Pizza = ({pizzas, handleEdit}) => {
       <td>{pizza.topping}</td>
       <td>{pizza.size}</td>
       <td>{pizza.vegetarian === true ? "Yes" : "No"}</td>
-      <td><button type="button" onClick={(e) => handleEdit(e,pizza.topping,pizza.id)} className="btn btn-primary">Edit Pizza</button></td>
+      <td><button type="button" onClick={(e) => handleEdit(e,pizza.topping, pizza.size, pizza.vegetarian, pizza.id)} className="btn btn-primary">Edit Pizza</button></td>
     </tr>))}
     </Fragment>
   )

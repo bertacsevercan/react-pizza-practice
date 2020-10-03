@@ -1,22 +1,32 @@
 import React from "react"
 
-const PizzaForm = (pizzas) => {
+const PizzaForm = ({updatedPizza, setupdatedPizza, handleEdit}) => {
 
-  const handleClick = (e) => {
-    e.preventDefault()
-    console.log(pizzas.updatedPizza.topping)
+  const handleChange = (e, key) => {
+    
+    setupdatedPizza({
+      ...updatedPizza,
+      [key] : e.target.value
+    })
   }
+  const handleCheck = (e, key) =>{ 
+    const value = e.target.value === "Vegetarian" ? true : false
+    setupdatedPizza({
+      ...updatedPizza,
+      [key] : value
+    })
+  } 
 
   return(
       <div className="form-row">
         <div className="col-5">
             <input type="text" className="form-control" placeholder="Pizza Topping" value={
                 //Pizza Topping Should Go Here
-                pizzas.updatedPizza.topping
-              }/>
+                updatedPizza.topping
+              } onChange={(e) => handleChange(e, "topping")} />
         </div>
         <div className="col">
-          <select value={pizzas.size} className="form-control">
+          <select value={updatedPizza.size} className="form-control" onChange={(e) => handleChange(e, "size")}>
             <option value="Small">Small</option>
             <option value="Medium">Medium</option>
             <option value="Large">Large</option>
@@ -25,13 +35,15 @@ const PizzaForm = (pizzas) => {
         <div className="col">
           <form>
           <div className="form-check">
-            <input className="form-check-input" name="veg" type="radio" value="Vegetarian" checked={pizzas.vegetarian}/>
+            <input className="form-check-input" name="veg" type="radio" value="Vegetarian" checked={updatedPizza.vegetarian} 
+            onChange={(e) => handleCheck(e, "vegetarian")}/>
             <label className="form-check-label">
               Vegetarian
             </label>
           </div>
           <div className="form-check">
-            <input className="form-check-input" name="veg" type="radio" value="Not Vegetarian" checked={pizzas.vegetarian}/>
+            <input className="form-check-input" name="veg" type="radio" value="Not Vegetarian" 
+            onChange={(e) => handleCheck(e, "vegetarian")}/>
             <label className="form-check-label">
               Not Vegetarian
             </label>
@@ -39,7 +51,9 @@ const PizzaForm = (pizzas) => {
           </form>
         </div>
         <div className="col">
-          <button type="submit" className="btn btn-success" onClick={handleClick}>Submit</button>
+          <button type="submit" className="btn btn-success" 
+          onClick={(e) => handleEdit(e, updatedPizza.topping, updatedPizza.size, updatedPizza.vegetarian, updatedPizza.id)}>
+            Submit</button>
         </div>
       </div>
 
