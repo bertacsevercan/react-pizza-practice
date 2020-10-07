@@ -4,7 +4,10 @@ import PizzaForm from "./components/PizzaForm";
 import PizzaList from "./containers/PizzaList";
 function App() {
 const[pizzas, setPizzas] = useState([]);
-const [updatedPizza, setupdatedPizza] = useState({});
+const [updatedPizza, setupdatedPizza] = useState({topping: "",
+size: "",
+vegetarian: ""
+});
 
 useEffect(() => {
   
@@ -15,30 +18,9 @@ useEffect(() => {
   }
   fetchData()
   
-},[updatedPizza]); // does a lot of fetch, why ?
-/*
-const handleClick = (e, topping, size, vegetarian, id) => {
-  async function updateData(){
-    const res = await fetch(`http://localhost:3000/pizzas/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify({
-        "topping" : topping,
-        "size" : size,
-        "vegetarian" : vegetarian
+},[updatedPizza]); 
 
-      }),
-      headers: { 
-        "Content-type": "application/json; charset=UTF-8 "
-      }
-    })
-    const data = await res.json()
-    console.log(data)
-    setupdatedPizza(data)
-  } updateData();
-
-}*/
-
-const handleEdit = (e, topping, size, vegetarian, id) =>{  // warning on console!!!
+const handleEdit = (e, topping, size, vegetarian, id) =>{ 
   async function updateData(){
     const res = await fetch(`http://localhost:3000/pizzas/${id}`, {
       method: "PATCH",
